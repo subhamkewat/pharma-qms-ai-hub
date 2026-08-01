@@ -1,0 +1,21 @@
+# Task List - AI-Powered Customer Complaint Management System
+
+- [x] Create project directories and layout
+- [x] Implement Backend:
+  - [x] `backend/requirements.txt`
+  - [x] `backend/.env.example` and `backend/.env`
+  - [x] `backend/app/__init__.py` & config / db configuration
+  - [x] `backend/app/models.py` & schemas & database migrations
+  - [x] `backend/app/utils/document_parser.py` (PDF, DOCX, TXT parsers)
+  - [x] `backend/app/agents/` (LangGraph modular agent nodes and state)
+  - [x] `backend/app/crud.py`
+  - [x] `backend/app/main.py` (FastAPI router definitions)
+- [x] Initialize Python Virtual Environment, install requirements, and run test verification
+- [x] Implement Frontend:
+  - [x] Create Vite React App in `frontend/`
+  - [x] Configure Redux Toolkit (`frontend/src/store`)
+  - [x] Write common layout and UI components
+  - [x] Write Pages (Dashboard, Log Complaint, History, Details, Copilot)
+  - [x] Configure React Router and main entrypoints
+- [x] Install node dependencies, run frontend development server, verify layout
+- [x] Create root `README.md` and verification `walkthrough.md`
