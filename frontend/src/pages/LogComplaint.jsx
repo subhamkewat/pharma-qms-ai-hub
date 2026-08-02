@@ -23,7 +23,7 @@ const LogComplaint = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
-  const { analyzedComplaint, analysisStatus, error } = useSelector((state) => state.complaints);
+  const { analyzedComplaint, analysisStatus, analysisError } = useSelector((state) => state.complaints);
   
   const [textInput, setTextInput] = useState('');
   const [fileInput, setFileInput] = useState(null);
@@ -224,12 +224,12 @@ const LogComplaint = () => {
             </div>
           )}
 
-          {error && (
+          {analysisError && (
             <div className="glass-panel rounded-2xl p-4 border-red-500/20 bg-red-950/10 flex gap-3 text-red-400">
               <AlertCircle className="w-5 h-5 flex-shrink-0" />
               <div className="space-y-1">
                 <p className="text-xs font-bold">Analysis Failed</p>
-                <p className="text-[10px] text-slate-400 leading-relaxed">{error}</p>
+                <p className="text-[10px] text-slate-400 leading-relaxed">{analysisError}</p>
               </div>
             </div>
           )}
@@ -312,6 +312,7 @@ const LogComplaint = () => {
                   type="text"
                   name="batch_number"
                   value={formData.batch_number}
+                  onChange={handleFormChange}
                   placeholder="e.g. Lot-1234X"
                   className="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200 placeholder-slate-600 focus:outline-none focus:border-pharmablue-500 font-mono"
                 />

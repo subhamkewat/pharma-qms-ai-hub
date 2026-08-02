@@ -190,6 +190,8 @@ const initialState = {
   analysisStatus: 'idle', // idle | loading | succeeded | failed
   copilotStatus: 'idle', // idle | loading | succeeded | failed
   error: null,
+  analysisError: null,
+  copilotError: null,
 };
 
 // Slice
@@ -203,6 +205,8 @@ const complaintSlice = createSlice({
     },
     clearError(state) {
       state.error = null;
+      state.analysisError = null;
+      state.copilotError = null;
     },
     addLocalCopilotMessage(state, action) {
       // Used to instantly push user message for smooth UI chat experience
@@ -258,6 +262,7 @@ const complaintSlice = createSlice({
       // analyzeComplaintText
       .addCase(analyzeComplaintText.pending, (state) => {
         state.analysisStatus = 'loading';
+        state.analysisError = null;
       })
       .addCase(analyzeComplaintText.fulfilled, (state, action) => {
         state.analysisStatus = 'succeeded';
@@ -265,12 +270,13 @@ const complaintSlice = createSlice({
       })
       .addCase(analyzeComplaintText.rejected, (state, action) => {
         state.analysisStatus = 'failed';
-        state.error = action.payload;
+        state.analysisError = action.payload;
       })
       
       // analyzeComplaintFile
       .addCase(analyzeComplaintFile.pending, (state) => {
         state.analysisStatus = 'loading';
+        state.analysisError = null;
       })
       .addCase(analyzeComplaintFile.fulfilled, (state, action) => {
         state.analysisStatus = 'succeeded';
@@ -278,7 +284,7 @@ const complaintSlice = createSlice({
       })
       .addCase(analyzeComplaintFile.rejected, (state, action) => {
         state.analysisStatus = 'failed';
-        state.error = action.payload;
+        state.analysisError = action.payload;
       })
       
       // submitComplaint
@@ -321,6 +327,7 @@ const complaintSlice = createSlice({
       // sendMessageToCopilot
       .addCase(sendMessageToCopilot.pending, (state) => {
         state.copilotStatus = 'loading';
+        state.copilotError = null;
       })
       .addCase(sendMessageToCopilot.fulfilled, (state, action) => {
         state.copilotStatus = 'succeeded';
@@ -329,7 +336,7 @@ const complaintSlice = createSlice({
       })
       .addCase(sendMessageToCopilot.rejected, (state, action) => {
         state.copilotStatus = 'failed';
-        state.error = action.payload;
+        state.copilotError = action.payload;
       });
   }
 });
